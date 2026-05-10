@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
+import urllib.parse
 from config import API_KEY
+
 
 st.title("🌤️ Mi Tiempo")
 
@@ -21,6 +23,7 @@ if city:
     else:
         st.error("No se encontraron datos del clima")
 
+city_encoded = urllib.parse.quote(city)
 
 url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=es"
 
