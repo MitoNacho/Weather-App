@@ -52,33 +52,9 @@ if city:
 
     st.markdown("""
 <style>
-
-/* MODO CLARO */
-@media (prefers-color-scheme: light) {
-
-    .stApp {
-        background: linear-gradient(to bottom, #87CEEB, #ffffff);
-        color: black;
-    }
-
-    h1, h2, h3, p, div, span, label {
-        color: black !important;
-    }
+.stApp {
+    background: linear-gradient(to bottom, #87CEEB, #ffffff);
 }
-
-/* MODO OSCURO */
-@media (prefers-color-scheme: dark) {
-
-    .stApp {
-        background: linear-gradient(to bottom, #0F172A, #1E293B);
-        color: white;
-    }
-
-    h1, h2, h3, p, div, span, label {
-        color: white !important;
-    }
-}
-
 </style>
 """, unsafe_allow_html=True)
 
