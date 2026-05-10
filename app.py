@@ -52,8 +52,16 @@ if city:
 
     st.markdown("""
 <style>
-.stApp {
-    background: linear-gradient(to bottom, #87CEEB, #ffffff);
+@media (prefers-color-scheme: light) {
+
+    .stApp {
+        background: linear-gradient(to bottom, #87CEEB, #ffffff);
+        color: black;
+    }
+
+    h1, h2, h3, p, div, span, label {
+        color: black !important;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
