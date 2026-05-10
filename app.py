@@ -89,8 +89,10 @@ st.markdown("""
     👨‍💻 Proyecto desarrollado por Nacho Naves 
     </h3>
 
-<a href="https://mitonacho.github.io/dev/" target="_blank">
-            <div class="portfolio-btn">
+            
+<div class="portfolio-btn">            
+    <a href="https://mitonacho.github.io/dev/" target="_blank">
+            
             <button style="
         background-color: #4CAF50;
         color: white;
