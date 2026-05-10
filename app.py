@@ -7,6 +7,7 @@ from config import API_KEY
 st.title("🌤️ Mi Tiempo")
 
 city = st.text_input("Escribe una ciudad")
+city = city.strip().capitalize()
 
 if not city:
     st.info("Escribe una ciudad para ver el clima")
