@@ -2,6 +2,48 @@ import streamlit as st
 import requests
 from config import API_KEY
 
+def get_background(weather_main):
+
+    weather_main = weather_main.lower()
+
+    themes = {
+
+        "clear": {
+            "light": "linear-gradient(to bottom, #87CEEB, #ffffff)",
+            "dark": "linear-gradient(to bottom, #0F172A, #1E3A8A)"
+        },
+
+        "rain": {
+            "light": "linear-gradient(to bottom, #6B7280, #D1D5DB)",
+            "dark": "linear-gradient(to bottom, #111827, #374151)"
+        },
+
+        "snow": {
+            "light": "linear-gradient(to bottom, #E0F2FE, #FFFFFF)",
+            "dark": "linear-gradient(to bottom, #1E293B, #475569)"
+        },
+
+        "thunderstorm": {
+            "light": "linear-gradient(to bottom, #7C3AED, #C4B5FD)",
+            "dark": "linear-gradient(to bottom, #2E1065, #4C1D95)"
+        },
+
+        "clouds": {
+            "light": "linear-gradient(to bottom, #CBD5E1, #F8FAFC)",
+            "dark": "linear-gradient(to bottom, #1E293B, #334155)"
+        }
+    }
+
+    return themes.get(
+        weather_main,
+        {
+            "light": "linear-gradient(to bottom, #87CEEB, #ffffff)",
+            "dark": "linear-gradient(to bottom, #0F172A, #1E293B)"
+        }
+    )
+
+
+
 st.set_page_config(
     page_title="Mi Tiempo",
     page_icon="🌤️",
@@ -34,14 +76,23 @@ if city:
     if response.status_code != 200:
         st.error("❌ Ciudad no encontrada")
         st.stop()
+    
 
+    
+
+    
     data = response.json()
+    weather_main = data["weather"][0]["main"]
+
+    
 
     temp = data["main"]["temp"]
     humidity = data["main"]["humidity"]
     feels_like = data["main"]["feels_like"]
     wind = data["wind"]["speed"]
     desc = data["weather"][0]["description"]
+
+    bg = get_background(weather_main)
 
     icon = data["weather"][0]["icon"]
 
@@ -50,43 +101,40 @@ if city:
     
     st.image(icon_url, width=100)
 
-    st.markdown("""
-<style>
-                
+    st.markdown(
+    f"""
+    <style>
 
+    /* LIGHT MODE */
+    @media (prefers-color-scheme: light) {{
 
-.stApp {
-    background: linear-gradient(to bottom, #87CEEB, #ffffff);
-}
-                
+        .stApp {{
+            background: {bg["light"]};
+            color: black;
+        }}
 
-@media (prefers-color-scheme: light) {
+        h1, h2, h3, p, div, span, label {{
+            color: black !important;
+        }}
+    }}
 
-    .stApp {
-        background: linear-gradient(to bottom, #87CEEB, #ffffff);
-        color: black;
-    }
+    /* DARK MODE */
+    @media (prefers-color-scheme: dark) {{
 
-    h1, h2, h3, p, div, span, label {
-        color: black !important;
-    }
-}
+        .stApp {{
+            background: {bg["dark"]};
+            color: white;
+        }}
 
+        h1, h2, h3, p, div, span, label {{
+            color: white !important;
+        }}
+    }}
 
-@media (prefers-color-scheme: dark) {
-
-    .stApp {
-        background: linear-gradient(to bottom, #0F172A, #1E293B);
-        color: white;
-    }
-
-    h1, h2, h3, p, div, span, label {
-        color: white !important;
-    }
-}
-
-</style>
-""", unsafe_allow_html=True)
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
     st.subheader(desc.capitalize())
 
@@ -108,3 +156,7 @@ if city:
 
 else:
     st.info("Escribe una ciudad para consultar el clima")
+
+
+
+
