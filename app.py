@@ -45,7 +45,7 @@ def get_background(weather_main):
 
 
 st.set_page_config(
-    page_title="Mi Tiempo",
+    page_title="Mi Tiempo con Python",
     page_icon="🌤️",
     layout="centered"
 )
@@ -53,21 +53,45 @@ st.set_page_config(
 st.title("🌤️ Mi Tiempo")
 
 st.markdown("""
-<div style="
-    padding: 1rem;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    margin-bottom: 20px;
-    text-align: center;
-">
+<style>
 
-<h3 style="margin-bottom: 10px;">
-    👨‍💻 Proyecto desarrollado por TuNombre
-</h3>
+.portfolio-banner {
+    padding: 1.2rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.portfolio-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background: #2563EB;
+    color: white !important;
+}
+
+.portfolio-btn:hover {
+    transform: scale(1.05);
+    background: #1D4ED8;
+}
+
+</style>
+
+<div class="portfolio-banner">            
+    <h3 style="margin-bottom: 10px;">
+    👨‍💻 Proyecto desarrollado por Nacho Naves 
+    </h3>
 
 <a href="https://mitonacho.github.io/dev/" target="_blank">
-    <button style="
+            <div class="portfolio-btn">
+            <button style="
         background-color: #4CAF50;
         color: white;
         border: none;
@@ -82,6 +106,7 @@ st.markdown("""
 </a>
 
 </div>
+</>            
 """, unsafe_allow_html=True)
 
 
