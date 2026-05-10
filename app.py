@@ -1,51 +1,71 @@
 import streamlit as st
 import requests
-import urllib.parse
 from config import API_KEY
 
+st.set_page_config(
+    page_title="Mi Tiempo",
+    page_icon="🌤️",
+    layout="centered"
+)
 
 st.title("🌤️ Mi Tiempo")
 
-city = st.text_input("Escribe una ciudad")
-city = city.strip().capitalize()
-
-if not city:
-    st.info("Escribe una ciudad para ver el clima")
-    st.stop()
+city = st.text_input(
+    "Introduce una ciudad",
+    placeholder="Ejemplo: Madrid"
+)
 
 if city:
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
-    response = requests.get(url)
+
+    city = city.strip()
+
+    url = (
+        f"https://api.openweathermap.org/data/2.5/weather"
+        f"?q={city}"
+        f"&appid={API_KEY}"
+        f"&units=metric"
+        f"&lang=es"
+    )
+
+    with st.spinner("Buscando clima..."):
+
+        response = requests.get(url)
+
+    if response.status_code != 200:
+        st.error("❌ Ciudad no encontrada")
+        st.stop()
+
     data = response.json()
 
-    if "main" in data:
-        temp = data["main"]["temp"]
-        st.write(f"Temperatura: {temp}°C")
-    else:
-        st.error("No se encontraron datos del clima")
+    temp = data["main"]["temp"]
+    humidity = data["main"]["humidity"]
+    feels_like = data["main"]["feels_like"]
+    wind = data["wind"]["speed"]
+    desc = data["weather"][0]["description"]
 
-city_encoded = urllib.parse.quote(city)
+    icon = data["weather"][0]["icon"]
 
-url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=es"
+    icon_url = f"https://openweathermap.org/img/wn/{icon}@2x.png"
 
-response = requests.get(url)
-if response.status_code != 200:
-    st.error("Introduce una ciudad válida")
-    st.stop()
+    st.image(icon_url, width=100)
 
-data = response.json()
-if "main" not in data:
-    st.error("Datos incompletos de la API")
-    st.stop()
+    st.subheader(desc.capitalize())
 
-temp = data["main"]["temp"]
-humidity = data["main"]["humidity"]
-feels_like = data["main"]["feels_like"]
-wind = data["wind"]["speed"]
-desc = data["weather"][0]["description"]
+    col1, col2 = st.columns(2)
 
-st.write(f"🌡️ Temperatura: {temp}°C")
-st.write(f"🤒 Sensación: {feels_like}°C")
-st.write(f"💧 Humedad: {humidity}%")
-st.write(f"💨 Viento: {wind} m/s")
-st.write(f"☁️ Estado: {desc}")
+    with col1:
+        st.metric("🌡️ Temperatura", f"{temp}°C")
+
+    with col2:
+        st.metric("🤒 Sensación", f"{feels_like}°C")
+
+    col3, col4 = st.columns(2)
+
+    with col3:
+        st.metric("💧 Humedad", f"{humidity}%")
+
+    with col4:
+        st.metric("💨 Viento", f"{wind} m/s")
+
+else:
+    st.info("Escribe una ciudad para consultar el clima")
