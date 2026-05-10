@@ -47,6 +47,8 @@ if city:
 
     icon_url = f"https://openweathermap.org/img/wn/{icon}@2x.png"
 
+    st.markdown("""<style>.stApp {background: linear-gradient(to bottom, #87CEEB, #ffffff);}</style>""", unsafe_allow_html=True)
+    
     st.image(icon_url, width=100)
 
     st.subheader(desc.capitalize())
