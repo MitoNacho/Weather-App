@@ -59,6 +59,7 @@ if city:
     background: linear-gradient(to bottom, #87CEEB, #ffffff);
 }
                 
+
 @media (prefers-color-scheme: light) {
 
     .stApp {
@@ -68,6 +69,19 @@ if city:
 
     h1, h2, h3, p, div, span, label {
         color: black !important;
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+
+    .stApp {
+        background: linear-gradient(to bottom, #0F172A, #1E293B);
+        color: white;
+    }
+
+    h1, h2, h3, p, div, span, label {
+        color: white !important;
     }
 }
 
