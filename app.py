@@ -51,53 +51,35 @@ st.set_page_config(
 )
 
 st.title("🌤️ Mi Tiempo")
+
 st.markdown("""
-<style>
-
-.portfolio-banner {
-    padding: 1.2rem;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
+<div style="
+    padding: 1rem;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
     text-align: center;
-    margin-bottom: 25px;
-    border: 1px solid rgba(255,255,255,0.15);
-}
+">
 
-.portfolio-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    background: #2563EB;
-    color: white !important;
-}
+<h3 style="margin-bottom: 10px;">
+    👨‍💻 Proyecto desarrollado por TuNombre
+</h3>
 
-.portfolio-btn:hover {
-    transform: scale(1.05);
-    background: #1D4ED8;
-}
-
-</style>
-
-<div class="portfolio-banner">
-
-    <h3>👨‍💻 Proyecto desarrollado por Nacho Naves</h3>
-
-    <p>
-        Python · Streamlit · APIs · OpenWeather
-    </p>
-
-    <a
-        class="portfolio-btn"
-        href="https://mitonacho.github.io/dev/"
-        target="_blank"
-    >
+<a href="https://mitonacho.github.io/dev/" target="_blank">
+    <button style="
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    ">
         Ver Portfolio 🚀
-    </a>
+    </button>
+</a>
 
 </div>
 """, unsafe_allow_html=True)
