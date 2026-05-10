@@ -51,6 +51,58 @@ st.set_page_config(
 )
 
 st.title("🌤️ Mi Tiempo")
+st.markdown("""
+<style>
+
+.portfolio-banner {
+    padding: 1.2rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.portfolio-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background: #2563EB;
+    color: white !important;
+}
+
+.portfolio-btn:hover {
+    transform: scale(1.05);
+    background: #1D4ED8;
+}
+
+</style>
+
+<div class="portfolio-banner">
+
+    <h3>👨‍💻 Proyecto desarrollado por Nacho Naves</h3>
+
+    <p>
+        Python · Streamlit · APIs · OpenWeather
+    </p>
+
+    <a
+        class="portfolio-btn"
+        href="https://mitonacho.github.io/dev/"
+        target="_blank"
+    >
+        Ver Portfolio 🚀
+    </a>
+
+</div>
+""", unsafe_allow_html=True)
+
+
 
 city = st.text_input(
     "Introduce una ciudad",
@@ -105,7 +157,7 @@ if city:
     f"""
     <style>
 
-    /* LIGHT MODE */
+    
     @media (prefers-color-scheme: light) {{
 
         .stApp {{
@@ -118,7 +170,7 @@ if city:
         }}
     }}
 
-    /* DARK MODE */
+    
     @media (prefers-color-scheme: dark) {{
 
         .stApp {{
