@@ -9,11 +9,17 @@ Diseñada con una interfaz moderna, fondos dinámicos según el clima y soporte 
 ## ✨ Características
 
 ✅ Consulta del clima en tiempo real
+
 ✅ Temperatura, humedad, viento y sensación térmica
+
 ✅ Fondos dinámicos según las condiciones climáticas
+
 ✅ Compatibilidad con Light Mode y Dark Mode
+
 ✅ Diseño responsive y minimalista
+
 ✅ Integración con OpenWeather API
+
 ✅ Interfaz moderna con Streamlit
 
 ---
